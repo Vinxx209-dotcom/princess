@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heart Box Fun</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght:500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body{
+            background:linear-gradient(135deg, #ffe1f2, #ffd7ed, #ffeaf7);
+            font-family:'Poppins', sans-serif;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+            overflow:hidden;
+        }
+
+        .box{
+            width:270px;
+            height:270px;
+            background:white;
+            border-radius:22px;
+            box-shadow:0 8px 25px rgba(255, 115, 180, 0.35);
+            position:relative;
+            overflow:hidden;
+            cursor:pointer;
+            border:3px solid #ff94c7;
+            transition: transform 0.2s ease;
+        }
+
+        .heart{
+            position:absolute;
+            font-size:22px;
+            animation: pop 1s ease forwards;
+        }
+
+        @keyframes pop {
+            0%{ transform:scale(0); opacity:0; }
+            50%{ transform:scale(1.4); opacity:1; }
+            100%{ transform:scale(1); opacity:1; }
+        }
+
+        /* Royal Message */
+        #message{
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%, -50%);
+            text-align:center;
+            width:85%;
+            font-size:20px;
+            font-family:'Playfair Display', serif;
+            line-height:1.6;
+            font-weight:600;
+            color:#9b005e;
+            display:none;
+            opacity:0;
+            background:rgba(255, 235, 250, 0.7);
+            padding:15px;
+            border-radius:15px;
+            border:2px solid #ffb4df;
+            box-shadow:0 4px 18px rgba(255, 115, 180, 0.35);
+            animation: royalFade 1.5s ease forwards;
+        }
+
+        @keyframes royalFade {
+            0%{ opacity:0; transform:translate(-50%, -50%) scale(0.8); }
+            100%{ opacity:1; transform:translate(-50%, -50%) scale(1); }
+        }
+
+        #resetBtn{
+            margin-top:25px;
+            padding:10px 25px;
+            font-size:18px;
+            background:linear-gradient(135deg, #b30059, #ff4fa3);
+            color:white;
+            border:none;
+            border-radius:25px;
+            display:none;
+            cursor:pointer;
+            box-shadow:0 6px 18px rgba(255, 115, 180, 0.4);
+            transition:0.2s;
+            letter-spacing:1px;
+        }
+
+        #resetBtn:hover{
+            transform:scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box" id="box">
+        <div id="message">
+            👑 <b>My Sweetest Princess</b> 👑 <br><br>
+            You really tapped 50 times just for this? 😳💗<br>
+            It honestly shows one thing…<br><br>
+            <span style="color:#b30059; font-size:22px;">You adore me way too much — and I love it 💕</span>
+        </div>
+    </div>
+
+    <button id="resetBtn" onclick="goHome()">Experience Again 💕</button>
+
+    <script>
+        let clickCount = 0;
+        const box = document.getElementById("box");
+        const message = document.getElementById("message");
+        const resetBtn = document.getElementById("resetBtn");
+
+        box.addEventListener("click", function(e){
+
+            clickCount++;
+
+            // move box FAR
+            const moveX = (Math.random() * 260) - 130; 
+            const moveY = (Math.random() * 260) - 130;
+            box.style.transform = `translate(${moveX}px, ${moveY}px)`;
+
+            // Show final message at 30 clicks
+            if(clickCount >= 50){
+                document.querySelectorAll(".heart").forEach(h => h.remove());
+                message.style.display = "block";
+                resetBtn.style.display = "inline-block";
+                return;
+            }
+
+            // Create hearts
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "💖";
+
+            const rect = box.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            heart.style.left = x + "px";
+            heart.style.top = y + "px";
+
+            box.appendChild(heart);
+        });
+
+        function goHome(){
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>

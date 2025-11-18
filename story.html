@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Our Story</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <style>
+        body{
+            margin:0;
+            padding:0;
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:#f5e6c8;
+            font-family:'Playfair Display', serif;
+            overflow:hidden;
+
+            /* Vintage grain effect */
+            background-image:
+                url('https://i.imgur.com/vP7V4zD.png'),
+                linear-gradient(135deg, #f9ecd2, #f7e6c6);
+            background-size:cover;
+        }
+
+        .box{
+            width:85%;
+            max-width:750px;
+            height:520px;
+            padding:40px;
+            border-radius:18px;
+
+            background:url('https://i.imgur.com/ss1Lh1Y.jpg');
+            background-size:cover;
+            background-position:center;
+
+            box-shadow:
+                0 0 25px rgba(120, 80, 30, 0.25),
+                inset 0 0 40px rgba(120, 80, 30,0.4);
+
+            border:4px solid rgba(120, 80, 40, 0.6);
+            animation: fade 1s ease-in-out;
+
+            overflow-y: scroll;
+            position:relative;
+        }
+
+        /* Hide Scrollbar */
+        .box::-webkit-scrollbar { display:none; }
+        .box { -ms-overflow-style:none; scrollbar-width:none; }
+
+        @keyframes fade {
+            from {opacity:0; transform:scale(0.97);}
+            to {opacity:1; transform:scale(1);}
+        }
+
+        #videoEmoji{
+            font-size:55px;
+            margin-bottom:10px;
+            animation: flicker 2s infinite;
+        }
+
+        @keyframes flicker {
+            0%,100% { opacity:1; text-shadow:0 0 12px rgba(255,190,110,0.7); }
+            50% { opacity:0.8; text-shadow:0 0 25px rgba(255,160,80,1); }
+        }
+
+        #textOutput{
+            font-family:'Great Vibes', cursive;
+            font-size:30px;
+            color:#5b3a1b;
+            text-align:center;
+            line-height:1.7;
+            white-space:pre-wrap;
+            letter-spacing:1px;
+            padding:10px;
+            text-shadow:0 0 5px rgba(255,255,255,0.7);
+        }
+
+        #startBtn{
+            padding:14px 34px;
+            border:none;
+            background:#8a5a2f;
+            color:white;
+            border-radius:40px;
+            cursor:pointer;
+            font-size:20px;
+            margin-top:20px;
+            box-shadow:0 6px 15px rgba(0,0,0,0.3);
+            transition:0.3s;
+            font-family:'Playfair Display', serif;
+        }
+
+        #startBtn:hover{
+            transform:scale(1.1);
+            background:#6b4624;
+        }
+
+        #nextBtn{
+            display:none;
+            padding:14px 32px;
+            background:#5b3a1b;
+            color:white;
+            border:none;
+            border-radius:30px;
+            font-size:19px;
+            cursor:pointer;
+            margin-top:25px;
+            animation: fadeIn 1.2s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {opacity:0;}
+            to {opacity:1;}
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <div id="videoEmoji">🕯️💌</div>
+
+    <div id="textOutput"></div>
+
+    <button id="startBtn" onclick="startLetter()">▶️ Start Letter</button>
+
+    <button id="nextBtn" onclick="window.location.href='fun.html'">
+        Continue 💖
+    </button>
+</div>
+
+<!-- 🔥 Hidden audio -->
+<audio id="bgMusic" src="audio/Main Tera  Musafir Mai Bhatka Tu Mera Basera  Lyrics song Status  AREDITS.mp3" loop . ></audio>
+
+<script>
+    const story = 
+`My Dearest,
+
+Every story is beautiful, yet ours feels written on old paper by candlelight… whispered gently by the universe.
+
+You walked into my world quietly, softly… yet you left the warmest mark on my heart.
+
+There was a moment—simple, unspoken—when I realized:
+"This girl… she isn’t just special. She feels like home."
+
+Since then, everything has felt softer… sweeter… almost magical.
+
+This isn’t just a letter.
+It’s the beginning of something timeless.
+Something true.
+Something beautifully ours.`;
+
+    let index = 0;
+    const speed = 40;
+    const textBox = document.getElementById("textOutput");
+    const nextBtn = document.getElementById("nextBtn");
+    const music = document.getElementById("bgMusic");
+
+    function startLetter(){
+        document.getElementById("startBtn").style.display = "none";
+
+        music.volume = 0.45;  
+        music.play();         // 🎵 Music starts only when tapped
+
+        typeLetter();
+    }
+
+    function typeLetter(){
+        if(index < story.length){
+            textBox.innerHTML += story.charAt(index);
+            index++;
+            setTimeout(typeLetter, speed);
+        } else {
+            nextBtn.style.display = "inline-block";
+        }
+        var audioPlayer = document.getElementById("myAudio");
+  audioPlayer.volume = 0.1; // Sets the volume to 50%
+    }
+</script>
+
+</body>
+</html>
+
+

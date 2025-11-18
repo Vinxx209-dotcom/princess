@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Princess Day</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin:0;
+            padding:0;
+            background:linear-gradient(145deg, #ffe4ef, #ffd1e8, #ffe5f4);
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            overflow:hidden;
+            font-family:'Poppins', sans-serif;
+            animation:bgMove 12s infinite alternate;
+        }
+
+        @keyframes bgMove {
+            0% { background-position:0 0; }
+            100% { background-position:100% 100%; }
+        }
+
+        .card {
+            width:80%;
+            max-width:480px;
+            background:rgba(255,255,255,0.6);
+            backdrop-filter:blur(18px);
+            padding:55px 40px;
+            border-radius:25px;
+            text-align:center;
+            position:relative;
+            border:6px double rgba(207, 158, 90, 0.9);
+            background-image:url('https://i.imgur.com/e6vR6tZ.png');
+            background-size:18%;
+            background-repeat:repeat;
+            opacity:0;
+            animation:fadeIn 1.8s ease forwards;
+            box-shadow:
+                0 0 25px rgba(255, 173, 223, 0.6),
+                inset 0 0 20px rgba(255,255,255,0.7),
+                inset 0 0 15px rgba(207, 158, 90, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity:0; transform:translateY(40px); }
+            to { opacity:1; transform:translateY(0); }
+        }
+
+        /* Inner corner ornaments with glow animation */
+        .inner-corner {
+            width:35px;
+            height:35px;
+            position:absolute;
+            background:url('https://i.imgur.com/hL1pwBs.png');
+            background-size:cover;
+            opacity:0.85;
+            animation:cornerGlow 3s infinite ease-in-out;
+        }
+
+        @keyframes cornerGlow {
+            0%,100% { filter:brightness(0.9); }
+            50% { filter:brightness(1.25); }
+        }
+
+        .ic1 { top:10px; left:10px; }
+        .ic2 { top:10px; right:10px; transform:scaleX(-1); }
+        .ic3 { bottom:10px; left:10px; transform:scaleY(-1); }
+        .ic4 { bottom:10px; right:10px; transform:scale(-1); }
+
+        /* Floating crown */
+        .crown {
+            width:70px;
+            margin:0 auto 15px;
+            opacity:0.9;
+            animation:float 3.5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform:translateY(0); }
+            50% { transform:translateY(-12px); }
+        }
+
+        h1 {
+            font-family:'Playfair Display', serif;
+            font-size:40px;
+            color:#b30059;
+            margin-bottom:10px;
+            text-shadow:0 0 8px rgba(255, 255, 255, 0.8);
+        }
+
+        p {
+            font-size:18px;
+            color:#5a3454;
+            margin-bottom:28px;
+            line-height:1.7;
+        }
+
+        a {
+            display:inline-block;
+            padding:14px 35px;
+            font-size:18px;
+            border-radius:30px;
+            background:linear-gradient(135deg, #b30059, #ff4fa3);
+            color:white;
+            text-decoration:none;
+            font-family:'Poppins', sans-serif;
+            letter-spacing:1px;
+            font-weight:400;
+            border:2px solid rgba(255,255,255,0.5);
+            transition:0.3s;
+            animation:pulseButton 2.5s infinite ease-in-out;
+            box-shadow:0 7px 20px rgba(255, 115, 180, 0.5);
+        }
+
+        @keyframes pulseButton {
+            0%,100% { transform:scale(1); }
+            50% { transform:scale(1.06); }
+        }
+
+        a:hover {
+            transform:scale(1.12);
+            box-shadow:0 10px 30px rgba(255, 115, 180, 0.8);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <!-- Inner Gold Corners -->
+        <div class="inner-corner ic1"></div>
+        <div class="inner-corner ic2"></div>
+        <div class="inner-corner ic3"></div>
+        <div class="inner-corner ic4"></div>
+
+        <!-- Crown -->
+        <img class="crown" src="images/PrincessCrown_650x.jpg">
+
+        <h1>Happy Princess Day <br>My Girl❤️</h1>
+        <p>You are the elegance in my world,<br>
+        the grace in my days,<br>
+        and the most precious part of my heart.</p>
+
+        <a href="love-letter.html">Open Your Royal Letter 💌</a>
+    </div>
+
+</body>
+</html>
+
